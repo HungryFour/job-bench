@@ -19,4 +19,12 @@ psql -f ~/jo-bench/schema.sql
 psql -vdatadir="'/home/user/jo-bench'" -f ~/jo-bench/copy.sql
 ```
 
+如果遇到这个报错，需要将copy.sql中的代码WIN1251更换为UTF8
+```
+psql:copy.sql:37: ERROR:  character with byte sequence 0x98 in encoding "WIN1251" has no equivalent in encoding "UTF8"
+CONTEXT:  COPY aka_title, line 1275
+SQL statement "COPY aka_title FROM '/job/csv/aka_title.csv' WITH (FORMAT csv, NULL '', DELIMITER ',', QUOTE '"', ESCAPE '\', ENCODING 'WIN1251');"
+```
+
+
 NB! Deploying tested on database with C-locale.
